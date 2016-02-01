@@ -1,0 +1,260 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/LY"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.fuzzyoilspilltrackervone.FuzzyOilTrackerVone"  >
+
+    <LinearLayout android:orientation="horizontal"
+        android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/TxtMx"
+        android:paddingLeft="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mx"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TxtMy"
+        android:paddingLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TxtDx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Dx"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TxtDy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:text=" Dy"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLayout>
+<!-- <LinearLayout 
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/TxtVx"
+        android:paddingLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vx"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TxtVy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="Vy"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/TxtV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:text=" V"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLay -->out> 
+
+    <LinearLayout android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+        <TextView
+        android:id="@+id/textCon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Concentration : "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/TxtIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xxx.xxx.xxx.xxx"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/ETXPort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="3667"
+            android:gravity="center"
+            android:inputType="number" >
+
+
+        </EditText>
+         <EditText 
+            android:id="@+id/EdtLY"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:text="1"
+            android:inputType="number"
+            android:layout_height="wrap_content"></EditText>
+    </LinearLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center_vertical">
+    
+    <ImageView
+        android:id="@+id/IMG"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:background="@drawable/pointer" />
+
+    <ImageView
+        
+        android:id="@+id/circle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/transparent_circle" />
+
+</LinearLayout>
+    <LinearLayout android:orientation="horizontal"
+    android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+    android:layout_height="wrap_content">
+
+
+        
+                <TextView
+            android:id="@+id/TxtBeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="b"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/txterror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Theta: "
+            android:paddingLeft="20dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+                <TextView
+            android:id="@+id/TxtError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="b"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+                
+
+        
+    </LinearLayout>
+            
+    <LinearLayout 
+        android:orientation="horizontal"
+   		android:layout_width="match_parent"
+   		android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtdistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance: "
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+                <TextView
+            android:id="@+id/TxtDist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="0000"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+  
+                
+
+        
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal" 
+        android:paddingTop="10dp"
+        android:gravity="center">
+
+        <ToggleButton
+            android:id="@+id/TBLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton" />
+        <Button
+            android:id="@+id/Brst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset" />
+
+        <ToggleButton
+            android:id="@+id/TB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton" />
+
+        <Button
+            android:id="@+id/Bexit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exit" />
+        
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+         <TextView
+            android:id="@+id/TxtTimeIte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beta: "
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    	<TextView android:id="@+id/Motots"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:text="0, 0"
+    	    android:textAppearance="?android:attr/textAppearanceLarge" 
+    	    />
+    </LinearLayout>
+   
+</LinearLayout>
