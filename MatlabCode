@@ -1,1 +1,132 @@
+% function ReadTheCameraVtwo()
+
+
+try
+url='http://169.254.41.204//axis-cgi/jpg/image.cgi';
+img_file='image_cam.jpg';  % temporary file used to store the camera image
+user='user';    % username and password used to perform basic authentication
+pass='******';
+
+SenderFlag = true;
+Fig_Flag = ~true;
+
+if SenderFlag
+    r = udp('***.***.***.***',****);
+    g = udp('***.***.***.***',****);
+    b = udp('***.***.***.***',****);
+    w = udp('***.***.***.***',****);
+
+
+    fopen(r);fopen(g);fopen(b);fopen(w);
+end
+
+% grab the camera image and store it in a local temporary file
+urlwrite(url,img_file,'Authentication','Basic','Username',user,'Password',pass);
+% show the camera image and delete the local temporary file
+SS = imread(img_file);
+
+close all, imshow(SS); 
+delete(img_file);
+try
+    load SceneParametersSwarming
+SS = SS(corners(1,2):corners(2,2),corners(1,1):corners(2,1),:);
+catch
+corners =round( ginput(2));
+SS = SS(corners(1,2):corners(2,2),corners(1,1):corners(2,1),:);
+save('SceneParametersSwarming.mat','corners')
+end
+imshow(SS),set(gcf,'Position',[ 765   563   560   420]); drawnow
+SS = flipud(SS);
+
+VBound(1) = 127 - round(256*size(SS,1)/size(SS,2)/2);
+VBound(2) = 127 + round(256*size(SS,1)/size(SS,2)/2);
+
+
+if Fig_Flag 
+figure(2),set(gcf,'Position',[ 765    52   560   420])
+end
+Red = zeros(size(SS,1),size(SS,2)); Gre = Red; Blu = Red;Whi = Red;
+
+Smargin = 200; % Small Object Margin
+Bmargin = 600;% Big Object Margin
+
+R = FindObjLocation(Red,Smargin, Bmargin,VBound);
+
+G = FindObjLocation(Gre,Smargin, Bmargin);
+
+B = FindObjLocation(Blu,Smargin+70, Bmargin+100);
+
+W = FindObjLocation(Whi,Smargin, Bmargin);
+
+tic
+Condition = 1;
+while (Condition)
+    try
+        urlwrite(url,img_file,'Authentication','Basic','Username',user,'Password',pass);
+       SS = imread(img_file);SS = SS(corners(1,2):corners(2,2),corners(1,1):corners(2,1),:);
+       SS = flipud(SS);
+            Red = SS(:,:,1)>150 & SS(:,:,2)<100 & SS(:,:,3)<100;
+            Blu = SS(:,:,1)<150 & SS(:,:,2)<150 & SS(:,:,3)>220;
+            Gre = SS(:,:,1)<180 & SS(:,:,2)>200 & SS(:,:,3)<200;
+            Whi = SS(:,:,1)>200 & SS(:,:,2)>200 & SS(:,:,3)>200;
+        R = FindObjLocation(Red,Smargin, Bmargin,VBound);
+        G = FindObjLocation(Gre,Smargin, Bmargin,VBound);
+        B = FindObjLocation(Blu,Smargin+70, Bmargin+100,VBound);
+        W = FindObjLocation(Whi,Smargin, Bmargin,VBound);
+%         data = [R(1),G(1),B(1),W(1),R(2),G(2),B(2),W(2),0,0,0,0]%+randi(10,1,12)
+        data = [R(1),R(2)       ,5,1,0,40,2,0,...
+                G(1),G(2)       ,5,1,0,40,2,0,...
+                B(1),B(2)       ,5,1,0,40,2,0,...
+                W(1),W(2)       ,5,1,0,40,2,0];
+            
+            
+data(33)=65;
+data(34) = 200;
+            
+            
+        udpData = uint8(data);
+        fwrite(r,udpData),fwrite(g,udpData),fwrite(b,udpData),fwrite(w,udpData)
+    catch
+        if SenderFlag
+          fclose(r);fclose(g);fclose(b);fclose(w);
+        end
+    end
+    Condition=Condition+1;
+    if Fig_Flag, figure(1), imshow(flipud(SS)),set(gcf,'Position',[765   564   560   420])
+
+    figure(2), hold on
+    
+    plot(R(1)-127,R(2)-127,'r*',...
+         G(1)-127,G(2)-127,'g*',...
+         B(1)-127,B(2)-127,'b*',...
+         W(1)-127,W(2)-127,'k*'),axis([-127 128 -127 128]),grid on
+    drawnow%,plot(B(1),B(2),'b*'),plot(W(1),W(2),'k*')
+    set(gcf,'Position',[786    51   560   420]);
+ 
+
+    end
+
+Condition = Condition+1;
+end
+
+data(3:8)=0;data(11:15)=0;data(18:23)=0;data(26:32)=0;
+        udpData = uint8(data);
+        fwrite(r,udpData),fwrite(g,udpData),fwrite(b,udpData),fwrite(w,udpData)
+        fwrite(r,udpData),fwrite(g,udpData),fwrite(b,udpData),fwrite(w,udpData)
+        fwrite(r,udpData),fwrite(g,udpData),fwrite(b,udpData),fwrite(w,udpData)
+if SenderFlag
+    fclose(r);fclose(g);fclose(b);fclose(w);
+end
+
+
+catch
+    if SenderFlag
+    fclose(r);fclose(g);fclose(b);fclose(w);
+    end
+end
+if Fig_Flag,
+title([num2str(toc),', ',num2str(toc/Condition)])
+else
+    [num2str(toc),', ',num2str(toc/Condition)]
+end
 
